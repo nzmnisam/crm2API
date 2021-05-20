@@ -9,7 +9,6 @@ use  App\Models\Staff;
 
 class StageController extends Controller
 {
-    //
     
     public function index() {
         return Stage::all();

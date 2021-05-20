@@ -14,13 +14,16 @@ class CreateStaffTable extends Migration
     public function up()
     {
         Schema::create('staff', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->date('created_at');
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('role');
+            $table->string('role');//sales or manager
             $table->boolean('status');
+            $table->bigInteger('manager_id')->unsigned()->nullable();
+
+            $table->foreign('manager_id')->references('id')->on('staff');//if the staff is of role sales then it has id of its manager
         });
     }
 

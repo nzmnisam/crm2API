@@ -22,6 +22,22 @@ class StaffController extends Controller
         return response()->json(['message' => 'Not logged in'], 401);
     }
 
+    public function indexJoin(Request $request) {
+
+        $token = new Token;
+        $token->setToken($request->header('token'));
+        if($token->checkToken()) {
+            $staff = DB::table('staff')
+            ->join('staff as managers','staff.manager_id','=', 'managers.id')
+            ->select('staff.id', 'staff.created_at','staff.updated_at',
+                'staff.name','staff.email','staff.password','staff.role' ,
+                'staff.status', 'staff.manager_id', 'staff.api_token','managers.name as manager')
+                ->get();
+            return $staff;
+        } 
+        return response()->json(['message'=>'Not logged in'],401);
+    }
+
     public function show(Staff $staff, Request $request)
     {
         $token = new Token;

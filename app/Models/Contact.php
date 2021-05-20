@@ -13,19 +13,14 @@ class Contact extends Model
         'first_name',
         'last_name',
         'title',
+        'deal_size',
+        'follow_up_date',
         'phone',
         'email',
         'contact_method',
-        'company',
-        'address',
-        'address2',
-        'city',
-        'zip_code',
-        'website_url',
-        'follow_up_date',
         'notes',
-        'deal_size',
         'stage_id',
-        'staff_id'
+        'staff_id',
+        'company_id',
     ];
 }
